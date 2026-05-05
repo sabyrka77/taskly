@@ -1,5 +1,5 @@
-const TodoInfo = ({ total, done }) => {
-  const hasTasks = total.length > 0
+const TodoInfo = ({ total, done, onDeleteAllButtonClick }) => {
+  const hasTasks = total > 0
 
   return (
     <div className="todo__info">
@@ -10,6 +10,7 @@ const TodoInfo = ({ total, done }) => {
         <button
           className="todo__delete-all-button"
           type="button"
+          onClick={onDeleteAllButtonClick}
         >
           Delete all
         </button>
