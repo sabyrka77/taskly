@@ -1,14 +1,22 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import AddTaskForm from './AddTaskForm'
 import SearchTaskForm from './SearchTaskForm'
 import TodoInfo from './TodoInfo'
 import TodoList from './TodoList'
 
 const Todo = () => {
-  const [tasks, setTasks] = useState([
-    { id: 'task-1', title: 'Купить молоко', isDone: false },
-    { id: 'task-2', title: 'Погладить кота', isDone: true },
-  ])
+  const [tasks, setTasks] = useState(() => {
+    const savedTasks = localStorage.getItem('tasks')
+
+    if (savedTasks) {
+      return JSON.parse(savedTasks)
+    }
+
+    return [
+      { id: 'task-1', title: 'Купить молоко', isDone: false },
+      { id: 'task-2', title: 'Погладить кота', isDone: true },
+    ]
+  })
   const [newTaskTitle, setNewTaskTitle] = useState('')
 
   const deleteAllTasks = () => {
@@ -49,6 +57,10 @@ const Todo = () => {
       setNewTaskTitle('')
     }
   }
+
+  useEffect(() => {
+    localStorage.setItem('tasks', JSON.stringify(tasks))
+  }, [tasks])
 
   return (
     <div className="todo">
