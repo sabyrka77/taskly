@@ -1,6 +1,13 @@
 import TodoItem from './TodoItem'
 
-const TodoList = ({ tasks = [], filteredTasks, onDeleteTaskButtonClick, onTaskCompleteChange }) => {
+const TodoList = ({
+  tasks = [],
+  filteredTasks,
+  firstIncompleteTaskRef,
+  firstIncompleteTaskId,
+  onDeleteTaskButtonClick,
+  onTaskCompleteChange,
+}) => {
   const hasTasks = tasks.length > 0
   const isFilteredTasksEmpty = filteredTasks?.length === 0
 
@@ -19,6 +26,7 @@ const TodoList = ({ tasks = [], filteredTasks, onDeleteTaskButtonClick, onTaskCo
           className="todo__item"
           key={task.id}
           filteredTasks={filteredTasks}
+          ref={task.id === firstIncompleteTaskId ? firstIncompleteTaskRef : null}
           onDeleteTaskButtonClick={onDeleteTaskButtonClick}
           onTaskCompleteChange={onTaskCompleteChange}
           {...task}
