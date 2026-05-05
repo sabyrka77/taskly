@@ -12,7 +12,11 @@ const Todo = () => {
   const [newTaskTitle, setNewTaskTitle] = useState('')
 
   const deleteAllTasks = () => {
-    console.log('Удаляем все задачи!')
+    const isConfirmed = confirm('Are you sure you want to delete all?')
+
+    if (isConfirmed) {
+      setTasks([])
+    }
   }
 
   const deleteTask = (taskId) => {
