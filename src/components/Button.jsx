@@ -1,10 +1,10 @@
-const Button = () => {
+const Button = ({ className = '', children, type = 'button' }) => {
   return (
     <button
-      className="button"
-      type="submit"
+      className={`button ${className}`}
+      type={type}
     >
-      Add
+      {children}
     </button>
   )
 }
