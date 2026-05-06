@@ -1,13 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import useTasksLocalStorage from './useTasksLocalStorage'
 
 const useTasks = () => {
-  const { savedTasks, saveTasks } = useTasksLocalStorage()
-
-  const [tasks, setTasks] = useState(savedTasks ?? [
-    { id: 'task-1', title: 'Купить молоко', isDone: false },
-    { id: 'task-2', title: 'Погладить кота', isDone: true },
-  ])
+  const [tasks, setTasks] = useState([])
 
   const [newTaskTitle, setNewTaskTitle] = useState('')
   const [searchQuery, setSearchQuery] = useState('')
@@ -50,11 +44,11 @@ const useTasks = () => {
   }, [])
 
   useEffect(() => {
-    saveTasks(tasks)
-  }, [tasks])
-
-  useEffect(() => {
     newTaskInputRef.current.focus()
+
+    fetch('http://localhost:3001/tasks')
+      .then((response) => response.json())
+      .then(setTasks)
   }, [])
 
   const filteredTasks = useMemo(() => {
