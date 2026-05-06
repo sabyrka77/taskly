@@ -31,13 +31,21 @@ const useTasks = () => {
   }, [tasks])
 
   const toggleCompleteTask = useCallback((taskId, isDone) => {
-    setTasks(tasks.map((task) => {
-      if (task.id === taskId) {
-        return { ...task, isDone }
-      }
+    fetch(`http://localhost:3001/tasks/${taskId}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ isDone }),
+    }).then(() => {
+      setTasks(tasks.map((task) => {
+        if (task.id === taskId) {
+          return { ...task, isDone }
+        }
 
-      return task
-    }))
+        return task
+      }))
+    })
   }, [tasks])
 
   const addTask = useCallback((title) => {
