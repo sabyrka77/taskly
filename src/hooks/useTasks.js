@@ -32,15 +32,23 @@ const useTasks = () => {
 
   const addTask = useCallback((title) => {
     const newTask = {
-      id: crypto?.randomUUID() ?? Date.now().toString(),
       title,
       isDone: false,
     }
 
-    setTasks((prevTasks) => [...prevTasks, newTask])
-    setNewTaskTitle('')
-    setSearchQuery('')
-    newTaskInputRef.current.focus()
+    fetch('http://localhost:3001/tasks', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newTask),
+    }).then((response) => response.json())
+      .then((addedTask) => {
+        setTasks((prevTasks) => [...prevTasks, addedTask])
+        setNewTaskTitle('')
+        setSearchQuery('')
+        newTaskInputRef.current.focus()
+      })
   }, [])
 
   useEffect(() => {
