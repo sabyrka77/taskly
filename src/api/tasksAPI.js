@@ -1,4 +1,4 @@
-const API = 'http://localhost:3000/tasks'
+const URL = 'http://localhost:3001/tasks'
 
 const headers = {
   'Content-Type': 'application/json',
@@ -6,11 +6,16 @@ const headers = {
 
 const tasksAPI = {
   getAll: () => {
-    return fetch(API).then((response) => response.json())
+    return fetch(URL).then((response) => response.json())
+  },
+
+  getById: (id) => {
+    return fetch(`${URL}/${id}`)
+      .then((response) => response.json())
   },
 
   add: (task) => {
-    return fetch(API, {
+    return fetch(URL, {
       method: 'POST',
       headers,
       body: JSON.stringify(task),
@@ -18,7 +23,7 @@ const tasksAPI = {
   },
 
   delete: (id) => {
-    return fetch(`${API}/${id}`, { method: 'DELETE' })
+    return fetch(`${URL}/${id}`, { method: 'DELETE' })
   },
 
   deleteAll: (tasks) => {
@@ -28,7 +33,7 @@ const tasksAPI = {
   },
 
   toggleComplete: (id, isDone) => {
-    return fetch(`${API}/${id}`, {
+    return fetch(`${URL}/${id}`, {
       method: 'PATCH',
       headers,
       body: JSON.stringify({ isDone }),
