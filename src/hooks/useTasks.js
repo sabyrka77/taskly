@@ -12,7 +12,13 @@ const useTasks = () => {
     const isConfirmed = confirm('Are you sure you want to delete all?')
 
     if (isConfirmed) {
-      setTasks([])
+      Promise.all(
+        tasks.map(({ id }) => {
+          return fetch(`http://localhost:3001/tasks/${id}`, {
+            method: 'DELETE',
+          })
+        }),
+      ).then(() => setTasks([]))
     }
   }, [])
 
