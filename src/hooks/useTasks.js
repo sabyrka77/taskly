@@ -17,7 +17,11 @@ const useTasks = () => {
   }, [])
 
   const deleteTask = useCallback((taskId) => {
-    setTasks(tasks.filter((task) => task.id !== taskId))
+    fetch(`http://localhost:3001/tasks/${taskId}`, {
+      method: 'DELETE',
+    }).then(() => {
+      setTasks(tasks.filter((task) => task.id !== taskId))
+    })
   }, [tasks])
 
   const toggleCompleteTask = useCallback((taskId, isDone) => {
