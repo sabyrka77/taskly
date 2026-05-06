@@ -1,3 +1,5 @@
+import { memo } from 'react'
+
 const TodoItem = ({ className = '', id, title, isDone, ref, onDeleteTaskButtonClick, onTaskCompleteChange }) => {
   return (
     <li className={`todo-item ${className}`} ref={ref}>
@@ -40,4 +42,4 @@ const TodoItem = ({ className = '', id, title, isDone, ref, onDeleteTaskButtonCl
   )
 }
 
-export default TodoItem
+export default memo(TodoItem)
