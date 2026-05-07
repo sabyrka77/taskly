@@ -3,8 +3,7 @@ import AddTaskForm from '@/features/add-task'
 import SearchTaskForm from '@/features/search-task'
 import TodoInfo from '@/features/stats'
 import Button from '@/shared/ui/Button'
-import { TasksContext } from '@/entities/todo'
-import { TodoList } from '@/entities/todo'
+import { TasksContext, TodoList } from '@/entities/todo'
 import styles from './Todo.module.scss'
 
 const Todo = () => {
