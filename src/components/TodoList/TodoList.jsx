@@ -1,8 +1,8 @@
 import { memo, useContext } from 'react'
-import TodoItem from './TodoItem'
-import { TasksContext } from '../context/TasksContext'
+import TodoItem from '../TodoItem/TodoItem'
+import { TasksContext } from '../../context/TasksContext'
 
-const TodoList = () => {
+const TodoList = ({ styles }) => {
   const { tasks, filteredTasks } = useContext(TasksContext)
 
   const hasTasks = tasks.length > 0
@@ -17,10 +17,10 @@ const TodoList = () => {
   }
 
   return (
-    <ul className="todo__list">
+    <ul className={styles.list}>
       {(filteredTasks ?? tasks).map((task) => (
         <TodoItem
-          className="todo__item"
+          className={styles.item}
           key={task.id}
           {...task}
         />
