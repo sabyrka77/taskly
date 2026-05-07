@@ -1,6 +1,6 @@
 import { memo, useContext } from 'react'
 import TodoItem from '../TodoItem'
-import { TasksContext } from '../../model/TasksContext'
+import { TasksContext } from '@/entities/todo'
 
 const TodoList = ({ styles }) => {
   const { tasks, filteredTasks } = useContext(TasksContext)

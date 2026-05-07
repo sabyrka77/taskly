@@ -1,6 +1,6 @@
 import { memo, useContext } from 'react'
 import RouterLink from '@/shared/ui/RouterLink'
-import { TasksContext } from '../../model/TasksContext'
+import { TasksContext } from '@/entities/todo'
 import styles from './TodoItem.module.css'
 
 const TodoItem = ({ className = '', id, title, isDone }) => {
