@@ -17,6 +17,8 @@ export const TasksProvider = ({ children }) => {
     setSearchQuery,
     newTaskInputRef,
     addTask,
+    disappearingTaskId,
+    appearingTaskId,
   } = useTasks()
 
   const { firstIncompleteTaskRef, firstIncompleteTaskId } = useIncompleteTaskScroll(tasks)
@@ -37,6 +39,8 @@ export const TasksProvider = ({ children }) => {
         setSearchQuery,
         newTaskInputRef,
         addTask,
+        disappearingTaskId,
+        appearingTaskId,
       }}
     >
       {children}
